@@ -1,0 +1,16 @@
+digraph xreg {
+	init [shape=plaintext, label=""]
+	i [label="!d & !v", xlabel=<<B>invalid</B>>];
+	d [label="d & v", xlabel=<<B>dirty</B>>];
+	c [label="!d & v", xlabel=<<B>clean</B>>];
+	init -> i;
+	i -> d [label="write"];
+	c -> d [label="write"];
+	d -> d [label="write"];
+	i -> c [label="read"];
+	c -> c [label="read"];
+	d -> c [label="read"];
+	i -> i [label="flush"];
+	c -> i [label="flush"];
+	d -> i [label="flush"];
+}
