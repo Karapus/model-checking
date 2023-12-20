@@ -1,19 +1,34 @@
-This model describes a register file cache with 3 registers: `xreg`, `ureg`, `mreg`.
+This model describes a register file cache.
 
-Each register can be in one of three states:
+# `xreg`
+
+This is a genral purpose register.
+
+# The register can be:
 * `invalid`
 * `dirty`
 * `clean`
 
-For each register, the following set of operations is defined:
+# The following set of operations is defined:
 * `write`
 * `read`
 * `flush`
 
-The folowing constraints should be satisfied:
-* `ureg` can be read from the target only if `mreg` is set to a specific value.
-* writing `mreg` and `ureg` clobbers `xreg`.
-
-Kripke Structure for `xreg` register:
-
+# Kripke Structure for `xreg` register:
+Atomic propositions: `d`, `v`.
 <img src="./xreg.svg">
+
+# `xreg` and `ureg`
+
+`ureg` is a second register in the model.
+
+# LTS multiplication for `xreg` and `ureg` register:
+Atomic propositions: `xd`, `xv`, `ud`, `uv`.
+<img src="./xureg_mul.svg">
+
+# Constraints:
+* Any access to `ureg` makes `xreg` dirty (Meaning: accessing `ureg` clobbers `xreg`).
+
+# Kripke Structure for `xreg` and `ureg` registers:
+<img src="./xureg.svg">
+

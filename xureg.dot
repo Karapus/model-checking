@@ -1,0 +1,73 @@
+digraph xureg_mul {
+	init [shape=plaintext, label=""]
+	ii [label="!xd & !xv & !ud & !uv", xlabel=<<B>ii</B>>];
+	ic [label="!xd & !xv & !ud & uv", xlabel=<<B>ic</B>>];
+	id [label="!xd & !xv & ud & uv", xlabel=<<B>id</B>>];
+	ci [label="!xd & xv & !ud & !uv", xlabel=<<B>ci</B>>];
+	cc [label="!xd & xv & !ud & uv", xlabel=<<B>cc</B>>];
+	cd [label="!xd & xv & ud & uv", xlabel=<<B>cd</B>>];
+	di [label="xd & xv & !ud & !uv", xlabel=<<B>di</B>>];
+	dc [label="xd & xv & !ud & uv", xlabel=<<B>dc</B>>];
+	dd [label="xd & xv & ud & uv", xlabel=<<B>dd</B>>];
+	init -> ii;
+
+	ii -> di [label="wx"];
+	ic -> dc [label="wx"];
+	id -> dd [label="wx"];
+	ci -> di [label="wx"];
+	cc -> dc [label="wx"];
+	cd -> dd [label="wx"];
+	di -> di [label="wx"];
+	dc -> dc [label="wx"];
+	dd -> dd [label="wx"];
+
+	ii -> ci [label="rx"];
+	ic -> cc [label="rx"];
+	id -> cd [label="rx"];
+	ci -> ci [label="rx"];
+	cc -> cc [label="rx"];
+	cd -> cd [label="rx"];
+	di -> ci [label="rx"];
+	dc -> cc [label="rx"];
+	dd -> cd [label="rx"];
+
+	ii -> ii [label="fx"];
+	ic -> ic [label="fx"];
+	id -> id [label="fx"];
+	ci -> ii [label="fx"];
+	cc -> ic [label="fx"];
+	cd -> id [label="fx"];
+	di -> ii [label="fx"];
+	dc -> ic [label="fx"];
+	dd -> id [label="fx"];
+
+	ii -> id [label="wu"];
+	ic -> id [label="wu"];
+	id -> id [label="wu"];
+	ci -> cd [label="wu"];
+	cc -> cd [label="wu"];
+	cd -> cd [label="wu"];
+	di -> dd [label="wu"];
+	dc -> dd [label="wu"];
+	dd -> dd [label="wu"];
+
+	ii -> ic [label="ru"];
+	ic -> ic [label="ru"];
+	id -> ic [label="ru"];
+	ci -> cc [label="ru"];
+	cc -> cc [label="ru"];
+	cd -> cc [label="ru"];
+	di -> dc [label="ru"];
+	dc -> dc [label="ru"];
+	dd -> dc [label="ru"];
+
+	ii -> ii [label="fu"];
+	ic -> ii [label="fu"];
+	id -> ii [label="fu"];
+	ci -> ci [label="fu"];
+	cc -> ci [label="fu"];
+	cd -> ci [label="fu"];
+	di -> di [label="fu"];
+	dc -> di [label="fu"];
+	dd -> di [label="fu"];
+}
