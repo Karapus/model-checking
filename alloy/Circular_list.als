@@ -1,5 +1,5 @@
 --model of a linked circular list
-sig Node {
+var sig Node {
 	var next: one Node
 }
 
@@ -15,15 +15,15 @@ fact init {
 	allReacheable
 }
 
-pred deleteHead {	
-	all n, pn : Node | pn.next = n and n = List.head
-		=>	pn.next' = n.next
-		and	List.head' = pn
-		and	n' = none
-}
-
 pred listEmpty {
 	no List.head
+}
+
+pred deleteHead {	
+	List.head.(~next).next' = List.head.next
+	(Node - List.head - List.head.(~next)).next' = (Node - List.head - List.head.(~next)).next
+	List.head' = ((no Node - List.head) => none else List.head.next)
+	Node' = Node - List.head
 }
 
 pred onlyOne {
@@ -31,11 +31,14 @@ pred onlyOne {
 }
 
 assert one_is_deletable {
-	deleteHead and after onlyOne  => listEmpty
+	always deleteHead and after onlyOne  => listEmpty
 }
 
 assert always_deletable {
-	deleteHead => eventually always listEmpty and always allReacheable
+	always deleteHead => eventually always listEmpty and always allReacheable
 }
-
+--run {allReacheable; allReacheable ; allReacheable} for exactly 3 steps
+--run {deleteHead}
+--check one_is_deletable
 check always_deletable
+
